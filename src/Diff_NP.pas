@@ -1,5 +1,7 @@
 ﻿unit Diff_NP;
 
+{.$DEFINE PROCESS_MESSAGES}
+
 {$IFDEF FPC}
   {$mode delphi}{$H+}
 {$ENDIF}
@@ -74,10 +76,12 @@ uses
 {$IFnDEF FPC}
   Generics.Collections, Windows,
 {$ELSE}
-  LCLIntf, LCLType, Fgl,
+ {LCLIntf, LCLType, }Fgl,
 {$ENDIF}
   SysUtils,
+{$IFDEF PROCESS_MESSAGES}
   Forms,
+{$ENDIF}
   Classes,
   DiffTypes;
 
@@ -146,8 +150,11 @@ type
 
 implementation
 
+{$IFnDEF FPC}
 uses
   System.Math;
+{$ELSE}
+{$ENDIF}
 
 constructor TNPDiff.Create(aOwner: TComponent);
 begin
@@ -378,7 +385,9 @@ begin
       inc(p);
       if (p mod 1024) = 1023 then
       begin
+        {$IFDEF PROCESS_MESSAGES}
         Application.ProcessMessages;
+        {$ENDIF}
         if FCancelled then exit;
       end;
       //nb: the Snake order is important here
@@ -399,7 +408,9 @@ begin
       inc(p);
       if (p mod 1024) = 1023 then
       begin
+        {$IFDEF PROCESS_MESSAGES}
         Application.ProcessMessages;
+        {$ENDIF}
         if FCancelled then exit;
       end;
       //nb: the Snake order is important here
@@ -460,7 +471,9 @@ begin
       inc(p);
       if (p mod 1024 = 1023) then
       begin
+        {$IFDEF PROCESS_MESSAGES}
         Application.ProcessMessages;
+        {$ENDIF}
         if FCancelled then exit;
       end;
       //nb: the Snake order is important here
@@ -481,7 +494,9 @@ begin
       inc(p);
       if (p mod 1024 = 1023) then
       begin
+        {$IFDEF PROCESS_MESSAGES}
         Application.ProcessMessages;
+        {$ENDIF}
         if FCancelled then exit;
       end;
       //nb: the Snake order is important here

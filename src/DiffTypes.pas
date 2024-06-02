@@ -10,11 +10,11 @@ uses
 {$IFnDEF FPC}
   Generics.Collections, Windows,
 {$ELSE}
-  LCLIntf, LCLType, FGL,
+ {LCLIntf, LCLType, }{FGL,}
 {$ENDIF}
   SysUtils,
-  Math,
-  Forms,
+ {Math,}
+ {Forms,}
   Classes;
 
 const

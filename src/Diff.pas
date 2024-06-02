@@ -44,10 +44,10 @@ uses
 {$IFnDEF FPC}
   Generics.Collections, Windows,
 {$ELSE}
-  LCLIntf, LCLType, FGL,
+  LCLIntf, LCLType{, FGL},
 {$ENDIF}
   SysUtils,
-  Math,
+ {Math,}
   Forms,
   Classes,
   DiffTypes,
@@ -71,7 +71,7 @@ type
 
     // Compare strings or list of Cardinals ...
     {$IFDEF FPC}
-    function Execute(const alist1, alist2: TIntegerList): boolean; overload;
+    function Execute(const alist1, alist2: TIntegerList; const aDiffAlgorithm: TDiffAlgorithm): boolean; overload;
     {$ELSE}
     function Execute(const alist1, alist2: TList<Cardinal>; const aDiffAlgorithm: TDiffAlgorithm = algND): boolean;
         overload;
